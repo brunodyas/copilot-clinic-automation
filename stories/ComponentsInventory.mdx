@@ -1,0 +1,49 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Documentation/Component Inventory" />
+
+# Component Inventory
+
+This Storybook documents all project components in `components/`.
+
+## Core Infrastructure
+
+- `components/apollo-provider.tsx`: wraps the app with Apollo Client context.
+- `components/service-worker-register.tsx`: registers and monitors the service worker.
+
+## UI Primitives (`components/ui`)
+
+- `badge.tsx`
+- `button.tsx`
+- `card.tsx`
+- `dialog.tsx`
+- `dropdown-menu.tsx`
+- `input.tsx`
+- `select.tsx`
+- `skeleton.tsx`
+- `sonner.tsx`
+- `table.tsx`
+
+## Dashboard Components (`components/dashboard`)
+
+- `AnalyticsComponent.tsx`: aggregates project/task metrics and top-level KPIs.
+- `AuthFormShell.tsx`: reusable auth form layout shell.
+- `CardComponent.tsx`: summary stat card.
+- `ChartsComponent.tsx`: recharts visualizations.
+- `CreateProject.tsx`: create-project dialog/form flow.
+- `DashboardClient.tsx`: dashboard orchestration container.
+- `DashboardSkeleton.tsx`: loading-state dashboard placeholder.
+- `FilterSearchComponent.tsx`: filtering + search controls.
+- `KanbanBoard.tsx`: drag/drop kanban board for task states.
+- `LoginForm.tsx`: sign-in form.
+- `ProjectComponent.tsx`: project list/table presentation.
+- `ProjectCRUD.tsx`: project create/read/update/delete workflow.
+- `SignupForm.tsx`: registration form.
+- `TaskComponent.tsx`: task listing and state controls.
+- `ToasterProvider.tsx`: toast provider for dashboard feedback.
+
+## How to run Storybook
+
+1. `npm install`
+2. `npm run storybook`
+3. Open `http://localhost:6006`

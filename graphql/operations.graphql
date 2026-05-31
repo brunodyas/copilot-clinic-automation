@@ -1,0 +1,78 @@
+fragment CachedTask on Task {
+	__typename
+	id
+	title
+	status
+	projectId
+	clientMutationId
+}
+
+fragment CachedProject on Project {
+	__typename
+	id
+	name
+	status
+	tasks {
+		...CachedTask
+	}
+}
+
+query GetProjects {
+	projects {
+		...CachedProject
+	}
+}
+
+mutation CreateProject($name: String!) {
+	createProject(name: $name) {
+		...CachedProject
+	}
+}
+
+mutation UpdateProjectName($projectId: ID!, $name: String!) {
+	updateProjectName(projectId: $projectId, name: $name) {
+		...CachedProject
+	}
+}
+
+mutation UpdateProjectStatus($projectId: ID!, $status: ProjectStatus!) {
+	updateProjectStatus(projectId: $projectId, status: $status) {
+		...CachedProject
+	}
+}
+
+mutation DeleteProject($projectId: ID!) {
+	deleteProject(projectId: $projectId) {
+		__typename
+		id
+	}
+}
+
+mutation CreateTask($projectId: ID!, $title: String!, $clientMutationId: String) {
+	createTask(
+		projectId: $projectId
+		title: $title
+		clientMutationId: $clientMutationId
+	) {
+		...CachedTask
+	}
+}
+
+mutation UpdateTaskStatus($taskId: ID!, $status: TaskStatus!) {
+	updateTaskStatus(taskId: $taskId, status: $status) {
+		...CachedTask
+	}
+}
+
+mutation DeleteTask($taskId: ID!) {
+	deleteTask(taskId: $taskId) {
+		__typename
+		id
+	}
+}
+
+subscription TaskCreated {
+	taskCreated {
+		...CachedTask
+	}
+}

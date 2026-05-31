@@ -1,0 +1,46 @@
+enum ProjectStatus {
+	ACTIVE
+	ARCHIVED
+}
+
+enum TaskStatus {
+	TODO
+	IN_PROGRESS
+	DONE
+}
+
+type Project {
+	id: ID!
+	name: String!
+	status: ProjectStatus!
+	createdAt: String!
+	tasks: [Task!]!
+}
+
+type Task {
+	id: ID!
+	title: String!
+	status: TaskStatus!
+	createdAt: String!
+	projectId: ID!
+	clientMutationId: String
+}
+
+type Query {
+	projects: [Project!]!
+	project(id: ID!): Project
+}
+
+type Mutation {
+	createProject(name: String!): Project!
+	updateProjectName(projectId: ID!, name: String!): Project!
+	updateProjectStatus(projectId: ID!, status: ProjectStatus!): Project!
+	deleteProject(projectId: ID!): Project!
+	createTask(projectId: ID!, title: String!, clientMutationId: String): Task!
+	updateTaskStatus(taskId: ID!, status: TaskStatus!): Task!
+	deleteTask(taskId: ID!): Task!
+}
+
+type Subscription {
+	taskCreated: Task!
+}
